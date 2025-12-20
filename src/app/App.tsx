@@ -99,56 +99,24 @@ export default function App() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="px-4 pt-6 max-w-2xl mx-auto">
-        <AnimatePresence mode="wait">
-          {activeTab === 'portfolio' && (
-            <motion.div
-              key="portfolio"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="space-y-4"
-            >
-              {mockProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <ProjectCard
-                    project={project}
-                    onClick={() => setSelectedProject(project)}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
+        {/* Main Content */}
+<div className="px-4 pt-6 max-w-2xl mx-auto">
+  {activeTab === 'portfolio' && (
+    <div className="space-y-4">
+      {mockProjects.map((project) => (
+        <ProjectCard
+          key={project.id}
+          project={project}
+          onClick={() => setSelectedProject(project)}
+        />
+      ))}
+    </div>
+  )}
 
-          {activeTab === 'access' && (
-            <motion.div
-              key="access"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              <KeyAccessCard />
-            </motion.div>
-          )}
+  {activeTab === 'access' && <KeyAccessCard />}
 
-          {activeTab === 'profile' && (
-            <motion.div
-              key="profile"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              <ProfileScreen />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+  {activeTab === 'profile' && <ProfileScreen />}
+</div>
 
       {/* Bottom Navigation */}
       <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
