@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Key, Sparkles, ExternalLink, Copy, Check, Image as ImageIcon, Video } from 'lucide-react';
 import { MediaBlock } from './MediaBlock';
 
+
 export function KeyAccessCard() {
   const [key, setKey] = useState('');
   const [result, setResult] = useState<{
@@ -49,11 +50,7 @@ export function KeyAccessCard() {
   return (
     <div className="space-y-6">
       {/* Key Input Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 rounded-3xl p-6 border border-zinc-800/50 backdrop-blur-xl shadow-2xl"
-      >
+      <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 rounded-3xl p-6 border border-zinc-800/50 backdrop-blur-xl shadow-2xl">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center">
             <Key className="w-5 h-5 text-purple-400" />
@@ -74,25 +71,21 @@ export function KeyAccessCard() {
           />
 
           <motion.button
-            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleGenerate}
             disabled={!key.trim()}
-            className="w-full py-4 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 text-white flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-shadow"
+            className="w-full py-4 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 text-white flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-purple-500/25 active:shadow-purple-500/15 transition-shadow"
+            style={{ willChange: 'transform' }}
           >
             <Sparkles className="w-5 h-5" />
             <span>Разблокировать контент</span>
           </motion.button>
         </div>
-      </motion.div>
+      </div>
 
       {/* Result Card */}
       {result && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-4"
-        >
+        <div className="space-y-4">
           {/* Header */}
           <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 rounded-3xl p-6 border border-zinc-800/50 backdrop-blur-xl shadow-2xl relative overflow-hidden">
             {/* Animated glow */}
@@ -130,7 +123,7 @@ export function KeyAccessCard() {
                   <motion.button
                     whileTap={{ scale: 0.9 }}
                     onClick={copyToClipboard}
-                    className="p-2 rounded-lg bg-zinc-800/50 hover:bg-zinc-700/50 transition-colors flex-shrink-0"
+                    className="p-2 rounded-lg bg-zinc-800/50 active:bg-zinc-700/50 transition-colors flex-shrink-0"
                   >
                     {copied ? (
                       <Check className="w-4 h-4 text-green-400" />
@@ -198,7 +191,7 @@ export function KeyAccessCard() {
               </div>
             </div>
           )}
-        </motion.div>
+        </div>
       )}
 
       {/* Image Viewer Modal */}
@@ -211,9 +204,9 @@ export function KeyAccessCard() {
           className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
         >
           <motion.img
-            initial={{ scale: 0.8 }}
+            initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
-            exit={{ scale: 0.8 }}
+            exit={{ scale: 0.9 }}
             src={selectedImage}
             alt="Full size"
             className="max-w-full max-h-full object-contain rounded-2xl"

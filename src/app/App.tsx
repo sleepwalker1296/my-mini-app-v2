@@ -7,6 +7,7 @@ import { KeyAccessCard } from './components/KeyAccessCard';
 import { ProfileScreen } from './components/ProfileScreen';
 import { BottomNavigation } from './components/BottomNavigation';
 
+
 // Mock project data
 const mockProjects: Project[] = [
   {
@@ -78,7 +79,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white pb-24">
+    <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
       {/* Header */}
       <div className="sticky top-0 z-40 backdrop-blur-xl bg-zinc-950/80 border-b border-zinc-900/50">
         <div className="px-4 py-4 max-w-2xl mx-auto">
@@ -99,24 +100,32 @@ export default function App() {
         </div>
       </div>
 
-        {/* Main Content */}
-<div className="px-4 pt-6 max-w-2xl mx-auto">
-  {activeTab === 'portfolio' && (
-    <div className="space-y-4">
-      {mockProjects.map((project) => (
-        <ProjectCard
-          key={project.id}
-          project={project}
-          onClick={() => setSelectedProject(project)}
-        />
-      ))}
-    </div>
-  )}
+      {/* Main Content - используем display вместо AnimatePresence */}
+      <div className="px-4 pt-6 max-w-2xl mx-auto">
+        {/* Portfolio Tab */}
+        <div 
+          className="space-y-4"
+          style={{ display: activeTab === 'portfolio' ? 'block' : 'none' }}
+        >
+          {mockProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onClick={() => setSelectedProject(project)}
+            />
+          ))}
+        </div>
 
-  {activeTab === 'access' && <KeyAccessCard />}
+        {/* Access Tab */}
+        <div style={{ display: activeTab === 'access' ? 'block' : 'none' }}>
+          <KeyAccessCard />
+        </div>
 
-  {activeTab === 'profile' && <ProfileScreen />}
-</div>
+        {/* Profile Tab */}
+        <div style={{ display: activeTab === 'profile' ? 'block' : 'none' }}>
+          <ProfileScreen />
+        </div>
+      </div>
 
       {/* Bottom Navigation */}
       <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
