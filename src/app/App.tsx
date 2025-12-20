@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { ProjectCard, type Project } from './components/ProjectCard';
 import { ProjectDetail } from './components/ProjectDetail';
 import { ImageViewer } from './components/ImageViewer';
